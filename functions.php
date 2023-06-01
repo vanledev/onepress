@@ -253,6 +253,14 @@ function onepress_scripts()
 		$google_font_url = onepress_fonts_url();
 		if ($google_font_url) {
 			wp_enqueue_style('onepress-fonts', onepress_fonts_url(), array(), $version);
+			add_filter('style_loader_tag', 'load_font_filter', 10, 2);
+			function load_font_filter($html, $handle) {
+				if ($handle === 'onepress-fonts') {
+					return str_replace("rel='stylesheet'",
+						"rel='preload' as='font' type='font/woff2' crossorigin='anonymous'", $html);
+				}
+				return $html;
+			}
 		}
 	}
 
