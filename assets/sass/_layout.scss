@@ -119,3 +119,18 @@ Footer widgets
 		}
 	}
 }
+
+
+.gallery-content {
+	img {
+		object-fit: cover;
+
+		@include for (screens-medium) {}
+
+		@include for (screens-small) {
+			width: 50vw;
+			height: 200px;
+		}
+
+	}
+}
